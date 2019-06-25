@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="tensorflow.alarm_clock.nicolai.com.roomup.adapter.DataBinding_CustomeAdapter"/>
+        <import type="tensorflow.alarm_clock.nicolai.com.roomup.utils.SoundUtil"/>
+        <variable name="viewModel" type="tensorflow.alarm_clock.nicolai.com.roomup.viewModels.ViewModel_MainAlarm"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ea_constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <Button
+                android:text="@{String.valueOf((@string/enum_monday).charAt(0))}"
+                android:layout_width="35dp"
+                android:layout_height="@dimen/day_buttons_height"
+                android:id="@+id/button2"
+                android:background="@{viewModel.liveById.getDays.isMonday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                android:textColor="@{viewModel.liveById.getDays.isMonday ? @color/colorText : @color/colorBlack}"
+                android:textSize="@dimen/normal_text_size"
+                android:onClick="@{() -> viewModel.changeDay(0)}"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_24dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_tuesday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button3"
+                android:onClick="@{() -> viewModel.changeDay(1)}"
+                android:textColor="@{viewModel.liveById.getDays.isTuesday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isTuesday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
+                app:layout_constraintTop_toTopOf="@+id/button2"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_wednesday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button4"
+                android:onClick="@{() -> viewModel.changeDay(2)}"
+                android:textColor="@{viewModel.liveById.getDays.isWednesday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isWednesday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/button5"
+                app:layout_constraintTop_toTopOf="@+id/button3"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_thursday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button5"
+                android:onClick="@{() -> viewModel.changeDay(3)}"
+                android:textColor="@{viewModel.liveById.getDays.isThursday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isThursday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/button6"
+                app:layout_constraintTop_toTopOf="@+id/button4"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_friday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button6"
+                android:onClick="@{() -> viewModel.changeDay(4)}"
+                android:textColor="@{viewModel.liveById.getDays.isFriday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isFriday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/button7"
+                app:layout_constraintTop_toTopOf="@+id/button5"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_saturday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button7"
+                android:onClick="@{() -> viewModel.changeDay(5)}"
+                android:textColor="@{viewModel.liveById.getDays.isSaturday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isSaturday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button6"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/button8"
+                app:layout_constraintTop_toTopOf="@+id/button6"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <Button
+                android:text="@{String.valueOf((@string/enum_sunday).charAt(0))}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/day_buttons_height"
+                app:layout_constraintDimensionRatio="1:1"
+                android:id="@+id/button8"
+                android:onClick="@{() -> viewModel.changeDay(6)}"
+                android:textColor="@{viewModel.liveById.getDays.isSunday ? @color/colorText : @color/colorBlack}"
+                android:background="@{viewModel.liveById.getDays.isSunday ? @drawable/round_button_primary : @drawable/round_button_dam}"
+                app:layout_constraintStart_toEndOf="@+id/button7"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/button7"
+                android:layout_marginEnd="16dp"
+                android:textStyle="bold" android:textSize="@dimen/normal_text_size"/>
+        <CheckBox
+                android:text="@string/weekly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox"
+                android:checked="@{viewModel.byId.isWeekly}"
+                android:onCheckedChanged="@{(compoundButton, checked) -> viewModel.changeWeekly(compoundButton, checked)}"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_24dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent" android:textSize="@dimen/normal_text_size"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_library_music_black_24dp"
+                android:id="@+id/imageView2"
+                android:layout_marginTop="@dimen/margin_32dp"
+                app:layout_constraintTop_toBottomOf="@+id/button2" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_24dp"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_label_outline_black_24dp"
+                android:id="@+id/imageView4"
+                android:layout_marginTop="@dimen/margin_32dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_24dp"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_volume_up_black_24dp"
+                android:id="@+id/imageView6" android:layout_marginTop="@dimen/margin_32dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_24dp" android:layout_marginBottom="@dimen/margin_32dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sound_title"
+                app:soundTitle="@{viewModel.liveById.getSound}"
+                android:onClick="@{() -> viewModel.setChooseRingtone(true)}"
+                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView2" android:layout_marginStart="@dimen/margin_16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/margin_24dp"
+                app:layout_constraintHorizontal_bias="0.0" android:textSize="@dimen/normal_text_size"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/name_hint"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:text="@{viewModel.byId.getName}"
+                android:afterTextChanged="@{name -> viewModel.setName(name)}"
+                app:layout_constraintTop_toTopOf="@+id/imageView4"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:textSize="@dimen/text_18sp"
+                android:layout_marginEnd="@dimen/margin_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="@{SoundUtil.getMaxVolume(seekBar)}"
+                android:progress="@{viewModel.byId.getVolume}"
+                android:onProgressChanged="@{(seekBar, progress, fromUser) -> viewModel.setVolume(seekBar, progress, fromUser)}"
+                android:id="@+id/seekBar"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                android:layout_marginStart="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/margin_24dp"
+                app:layout_constraintTop_toTopOf="@+id/imageView6"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView6"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

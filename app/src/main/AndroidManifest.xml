@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="tensorflow.alarm_clock.nicolai.com.roomup">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".WakeUp"
+                android:excludeFromRecents="true"
+                android:launchMode="singleTask"
+                android:screenOrientation="nosensor"
+                android:taskAffinity=""/>
+
+        <receiver android:name=".receiver_service.Alarm_Receiver"/>
+
+        <service android:name=".receiver_service.ForegroundService_AlarmSound"/>
+
+        <receiver
+                android:name=".receiver_service.BootBroadcastReceiver"
+                android:directBootAware="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver_service.Timer_Receiver"/>
+
+        <service android:name=".receiver_service.ForegroundService_TimerSound"/>
+
+        <activity
+                android:name=".TimerFullScreen"
+                android:excludeFromRecents="true"
+                android:launchMode="singleTask"
+                android:taskAffinity=""/>
+        <activity android:name=".ShareRate">
+        </activity>
+        <activity android:name=".Legal">
+        </activity>
+    </application>
+
+</manifest>

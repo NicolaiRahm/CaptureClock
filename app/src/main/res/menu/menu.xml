@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.nicolai.calmingalarm20.MainActivity">
+    <item
+        android:id="@+id/action_share_rate"
+        android:orderInCategory="100"
+        android:title="@string/share_and_rate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:title="@string/help"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_legal"
+        android:orderInCategory="100"
+        android:title="@string/legal"
+        app:showAsAction="never" />
+</menu>

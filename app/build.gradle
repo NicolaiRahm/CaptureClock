@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {}
+    }
+
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "tensorflow.alarm_clock.nicolai.com.roomup"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 5
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        debug {
+            /*minifyEnabled true
+            shrinkResources true
+            //useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'*/
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    aaptOptions {
+        noCompress "tflite"
+        noCompress "lite"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+repositories {
+    maven {
+        url 'https://google.bintray.com/tensorflow'
+    }
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+
+    // Room components
+    implementation "android.arch.persistence.room:runtime:2.1.0-alpha03"
+    annotationProcessor "android.arch.persistence.room:compiler:2.1.0-alpha03"
+    androidTestImplementation "android.arch.persistence.room:testing:2.1.0-alpha03"
+
+    // Lifecycle components
+    //implementation "android.arch.lifecycle:runtime:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha03'
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0-alpha03"
+    //Databinding
+    //annotationProcessor 'com.android.databinding:compiler:3.1.4'
+
+    //Navigation
+    implementation "android.arch.navigation:navigation-fragment:1.0.0"
+    implementation "android.arch.navigation:navigation-ui:1.0.0"
+
+    //TensorFlow
+    implementation 'org.tensorflow:tensorflow-lite:1.12.0'
+    implementation 'com.android.support:design:28.0.0'
+
+    //Material progressBar
+    implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
+}

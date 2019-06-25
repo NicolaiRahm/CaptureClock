@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/mainActivity">
+
+    <activity android:id="@+id/mainActivity"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.MainActivity"
+              android:label="activity_main"
+              tools:layout="@layout/activity_main"/>
+
+    <fragment android:id="@+id/alarmsOverview"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.AlarmsOverview"
+              android:label="fragment_alarms_overview"
+              tools:layout="@layout/fragment_alarms_overview">
+        <action android:id="@+id/action_alarmsOverview_to_mainActivity" app:destination="@id/mainActivity"/>
+    </fragment>
+
+    <fragment android:id="@+id/timer"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.Timer"
+              android:label="fragment_timer"
+              tools:layout="@layout/fragment_timer">
+        <action android:id="@+id/action_timer_to_mainActivity" app:destination="@id/mainActivity"/>
+    </fragment>
+
+    <activity android:id="@+id/wakeUp"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.WakeUp"
+              android:label="activity_wake_up"
+              tools:layout="@layout/activity_wake_up"/>
+
+    <fragment android:id="@+id/timePickerFragment"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.dialogs.TimePickerDF"
+              android:label="TimePickerFragment">
+        <action android:id="@+id/action_timePickerFragment_to_mainActivity" app:destination="@id/mainActivity"/>
+    </fragment>
+
+    <activity android:id="@+id/imageDisplay"
+              android:name="tensorflow.alarm_clock.nicolai.com.roomup.ImageDisplay"
+              android:label="activity_image_display"
+              tools:layout="@layout/activity_image_display"/>
+</navigation>
